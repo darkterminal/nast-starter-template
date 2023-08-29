@@ -1,0 +1,13 @@
+FROM node:lts-buster-slim AS base
+RUN apt update && apt install libssl-dev ca-certificates -y
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+FROM base as dev
+
+RUN yarn install
+COPY . .
+
+EXPOSE 3000
+CMD ["yarn", "dev"]

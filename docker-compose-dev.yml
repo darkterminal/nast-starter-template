@@ -20,10 +20,11 @@ services:
     ports:
       - "85:3000"
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./
     volumes:
       - .env:/app/.env
+      - ./:/app
     networks:
       - nast_app
 volumes:
